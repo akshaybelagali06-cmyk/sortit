@@ -516,7 +516,7 @@ export function* insertionSort(arr) {
 /** 4. MERGE SORT */
 export function* mergeSort(arr) {
   let a = [...arr];
-  
+
   function* helper(l, r) {
     if (l >= r) return;
     let mid = Math.floor((l + r) / 2);
@@ -530,8 +530,8 @@ export function* mergeSort(arr) {
     let left = a.slice(l, mid + 1);
     let right = a.slice(mid + 1, r + 1);
     let i = 0, j = 0, k = l;
-    
-    yield { type: "line", line: 6, description: `Merging subarrays [${l}..${mid}] and [${mid+1}..${r}]`, array: [...a], indices: [l, r] };
+
+    yield { type: "line", line: 6, description: `Merging subarrays [${l}..${mid}] and [${mid + 1}..${r}]`, array: [...a], indices: [l, r] };
 
     while (i < left.length && j < right.length) {
       yield { type: "compare", indices: [l + i, mid + 1 + j], array: [...a], line: 6, description: `Comparing left element ${left[i]} and right element ${right[j]}` };
@@ -819,18 +819,47 @@ export function* cycleSort(arr) {
 /** 12. BITONIC SORT */
 export function* bitonicSort(arr) {
   let a = [...arr];
-  let n = a.length;
+  let origLen = a.length;
+  if (origLen === 0) return;
+
+  // 1. Pad the array to the nearest power of 2 using Infinity
+  let n = 1;
+  while (n < origLen) {
+    n *= 2;
+  }
+  while (a.length < n) {
+    a.push(Infinity);
+  }
 
   function* bitonicMerge(low, count, dir) {
     if (count > 1) {
       let k = Math.floor(count / 2);
       for (let i = low; i < low + k; i++) {
-        yield { type: "compare", indices: [i, i + k], array: [...a], line: 5, description: `Bitonic compare arr[${i}] (${a[i]}) and arr[${i + k}] (${a[i + k]}) dir=${dir ? "ASC" : "DESC"}` };
+        // Exclude yield comparison visuals for padded virtual elements outside original bounds
+        if (i < origLen || i + k < origLen) {
+          yield {
+            type: "compare",
+            indices: [i, i + k],
+            array: a.slice(0, origLen),
+            line: 5,
+            description: `Bitonic compare arr[${i}] (${a[i]}) and arr[${i + k}] (${a[i + k]}) dir=${dir ? "ASC" : "DESC"}`
+          };
+        }
+
         if ((dir && a[i] > a[i + k]) || (!dir && a[i] < a[i + k])) {
           let temp = a[i];
           a[i] = a[i + k];
           a[i + k] = temp;
-          yield { type: "swap", indices: [i, i + k], array: [...a], line: 5, description: `Swapping bitonic elements` };
+
+          if (i < origLen || i + k < origLen) {
+            yield {
+              type: "swap",
+              indices: [i, i + k],
+              array: a.slice(0, origLen),
+              line: 5,
+              description: `Swapping bitonic elements`
+            };
+          }
         }
       }
       yield* bitonicMerge(low, k, dir);
@@ -848,7 +877,19 @@ export function* bitonicSort(arr) {
   }
 
   yield* bitonicSortRec(0, n, true);
-  for (let k = 0; k < n; k++) yield { type: "markSorted", indices: [k], array: [...a], line: 5, description: "Bitonic Sort Complete!" };
+
+  // 2. Remove padded elements
+  a = a.slice(0, origLen);
+
+  for (let k = 0; k < origLen; k++) {
+    yield {
+      type: "markSorted",
+      indices: [k],
+      array: [...a],
+      line: 5,
+      description: "Bitonic Sort Complete!"
+    };
+  }
 }
 
 /** 13. PANCAKE SORT */
@@ -976,7 +1017,7 @@ export function* timSort(arr) {
       let mid = left + size - 1;
       let right = Math.min(left + 2 * size - 1, n - 1);
       if (mid < right) {
-        yield { type: "line", line: 5, description: `Merging TimSort runs [${left}..${mid}] and [${mid+1}..${right}]`, array: [...a], indices: [left, right] };
+        yield { type: "line", line: 5, description: `Merging TimSort runs [${left}..${mid}] and [${mid + 1}..${right}]`, array: [...a], indices: [left, right] };
         let tempArr = [];
         let p1 = left, p2 = mid + 1;
         while (p1 <= mid && p2 <= right) {
@@ -1080,7 +1121,7 @@ export function* librarySort(arr) {
   let n = a.length;
 
   yield { type: "line", line: 1, description: "Library Sort: initializing gapped array structure", array: [...a], indices: [] };
-  
+
   for (let i = 1; i < n; i++) {
     let key = a[i];
     let j = i - 1;
@@ -1347,27 +1388,76 @@ export function* strandSort(arr) {
       description: `Pulled increasing strand: [${strand.join(", ")}]`,
       array: [...a],
       indices: [],
-      auxData: { label: "Extracted Strand & Result", items: [{ value: `Strand: [${strand.join(",")}]` }, { value: `Sorted Result: [${result.join(",")}]` }] }
+      auxData: {
+        label: "Extracted Strand & Result",
+        items: [
+          { value: `Strand: [${strand.join(",")}]` },
+          { value: `Sorted Result: [${result.join(",")}]` }
+        ]
+      }
     };
 
-    // Merge strand into result
+    // ---- MERGE strand into result ----
     let merged = [];
     let p1 = 0, p2 = 0;
     while (p1 < result.length && p2 < strand.length) {
+      yield {
+        type: "compare",
+        indices: [],
+        array: [...a],
+        line: 4,
+        description: `Merging: comparing result[${p1}] (${result[p1]}) and strand[${p2}] (${strand[p2]})`,
+        auxData: {
+          label: "Merge Progress",
+          items: [
+            { value: `Result: [${result.join(",")}]` },
+            { value: `Strand: [${strand.join(",")}]` },
+            { value: `Merged: [${merged.join(",")}]` }
+          ]
+        }
+      };
       if (result[p1] <= strand[p2]) merged.push(result[p1++]);
       else merged.push(strand[p2++]);
     }
     while (p1 < result.length) merged.push(result[p1++]);
     while (p2 < strand.length) merged.push(strand[p2++]);
+
     result = merged;
 
-    for (let idx = 0; idx < result.length; idx++) {
-      a[idx] = result[idx];
-      yield { type: "overwrite", indices: [idx], array: [...a], line: 4, description: `Writing merged strand result to index ${idx}` };
-    }
+    yield {
+      type: "line",
+      line: 5,
+      description: `Merged strand into result: [${result.join(", ")}]`,
+      array: [...a],
+      indices: [],
+      auxData: {
+        label: "Merge Result",
+        items: [{ value: `Sorted So Far: [${result.join(",")}]` }]
+      }
+    };
   }
 
-  for (let k = 0; k < n; k++) yield { type: "markSorted", indices: [k], array: [...a], line: 4, description: "Strand Sort Complete!" };
+  // Write the final sorted result back into `a` for the bar visualizer
+  for (let k = 0; k < n; k++) {
+    a[k] = result[k];
+    yield {
+      type: "overwrite",
+      indices: [k],
+      array: [...a],
+      line: 6,
+      description: `Copying final sorted value ${result[k]} to arr[${k}]`
+    };
+  }
+
+  for (let k = 0; k < n; k++) {
+    yield {
+      type: "markSorted",
+      indices: [k],
+      array: [...a],
+      line: 6,
+      description: "Strand Sort Complete!"
+    };
+  }
 }
 
 /** Map of algorithm keys to generator functions */
