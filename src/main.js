@@ -1,7 +1,7 @@
 /**
  * SortIt V2 — Algorithm Observatory entry point.
  */
-
+import { createComparisonLab } from './ui/comparisonLab.js';
 import {
   ALGORITHM_METADATA,
   getAlgorithm,
@@ -39,6 +39,7 @@ class SortingVisualizerApp {
     this.bindEvents();
     this.runStartupSelfTest();
     this.generateNewArray();
+    this.initComparisonLab();
   }
 
   initDOMReferences() {
@@ -90,6 +91,7 @@ class SortingVisualizerApp {
 
       selfTestBadge: document.getElementById('selfTestBadge'),
       selfTestText: document.getElementById('selfTestText'),
+      comparisonLabContainer: document.getElementById('comparison-lab-container'),
     };
   }
 
@@ -99,7 +101,17 @@ class SortingVisualizerApp {
     this.statsRenderer = new StatsRenderer(this.dom);
     this.explanationRenderer = new ExplanationRenderer(this.dom);
   }
+  initComparisonLab() {
+    if (!this.dom.comparisonLabContainer) {
+      console.warn('Comparison Lab container not found.');
+      return;
+    }
 
+    createComparisonLab(
+      this.dom.comparisonLabContainer,
+      () => [...this.currentArray]
+    );
+  }
   bootstrapSelectors() {
     populateAlgorithmSelect(this.dom.algoSelect, listAlgorithms());
     populatePresetSelect(this.dom.presetSelect);

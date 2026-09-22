@@ -190,6 +190,158 @@
 
   </main>
 
+  <!-- =========================================================
+       COMPARISON LAB
+  ========================================================= -->
+
+  <section
+    id="comparison-lab-container"
+    class="comparison-lab-section"
+    aria-labelledby="comparison-lab-title"
+  >
+
+    <div class="comparison-lab-header">
+
+      <div class="comparison-lab-title-area">
+
+        <span class="comparison-lab-eyebrow">
+          EXPERIMENT MODE
+        </span>
+
+        <h2 id="comparison-lab-title">
+          ⚔ Comparison Lab
+        </h2>
+
+        <p>
+          Compare multiple sorting algorithms using the exact same array.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- Algorithm Selection -->
+
+    <div
+      id="comparison-algorithm-selection"
+      class="comparison-algorithm-selection"
+    >
+      <!-- JavaScript will generate algorithm checkboxes here -->
+    </div>
+
+
+    <!-- Comparison Controls -->
+
+    <div class="comparison-controls">
+
+      <button
+        type="button"
+        id="comparison-select-all"
+      >
+        Select All
+      </button>
+
+      <button
+        type="button"
+        id="comparison-clear-all"
+      >
+        Clear All
+      </button>
+
+      <button
+        type="button"
+        id="comparison-run"
+      >
+        ⚡ Run Comparison
+      </button>
+
+    </div>
+
+
+    <div class="comparison-summary" id="comparison-summary" aria-live="polite">
+      <div class="comparison-summary-item">
+        <span class="comparison-summary-label">Same input array</span>
+        <strong>Each algorithm receives the exact same values.</strong>
+      </div>
+      <div class="comparison-summary-item">
+        <span class="comparison-summary-label">Independent copies</span>
+        <strong>Every generator runs on its own array copy.</strong>
+      </div>
+      <div class="comparison-summary-item">
+        <span class="comparison-summary-label">Measured timing</span>
+        <strong>Generator execution time only.</strong>
+      </div>
+      <div class="comparison-summary-meta">
+        <span>Input size: <strong id="comparison-input-size">0</strong></span>
+        <span>Algorithms tested: <strong id="comparison-algorithm-count">0</strong></span>
+      </div>
+    </div>
+
+    <!-- Status -->
+
+    <div
+      id="comparison-status"
+      class="comparison-status"
+      aria-live="polite"
+    >
+      Select at least two algorithms.
+    </div>
+
+
+    <!-- Fastest Result -->
+
+    <div
+      id="comparison-fastest"
+      class="comparison-fastest"
+      hidden
+    >
+      <!-- JavaScript will display fastest result here -->
+    </div>
+
+
+    <!-- Results -->
+
+    <div
+      class="comparison-results-container"
+    >
+
+      <table
+        id="comparison-results"
+        class="comparison-results"
+      >
+
+        <thead>
+
+          <tr>
+            <th>Algorithm</th>
+            <th>Time</th>
+            <th>Steps</th>
+            <th>Status</th>
+            <th>Difference</th>
+          </tr>
+
+        </thead>
+
+        <tbody id="comparison-results-body">
+
+          <tr>
+            <td
+              colspan="5"
+              class="comparison-empty"
+            >
+              Run a comparison to see results.
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </section>
+
   <footer class="footer">
     SortIt Algorithm Observatory · Decoupled generator engine · StepPlayer history · 25 algorithms
   </footer>

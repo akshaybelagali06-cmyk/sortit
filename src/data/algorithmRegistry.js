@@ -44,16 +44,17 @@ export const algorithmRegistry = {
     allowsNegatives: true,
     note: null,
     pseudocode: [
-          "do",
-          "  swapped = false",
-          "  for i = 0 to n - 2",
-          "    if arr[i] > arr[i+1] then",
-          "      swap(arr[i], arr[i+1])",
-          "      swapped = true",
-          "while swapped"
+      "do",
+      "  swapped = false",
+      "  for i = 0 to n - 2",
+      "    if arr[i] > arr[i+1] then",
+      "      swap(arr[i], arr[i+1])",
+      "      swapped = true",
+      "while swapped"
     ],
     generator: bubbleSort,
   },
+
   selection: {
     id: "selection",
     name: "Selection Sort",
@@ -69,15 +70,16 @@ export const algorithmRegistry = {
     allowsNegatives: true,
     note: null,
     pseudocode: [
-          "for i = 0 to n - 1",
-          "  minIdx = i",
-          "  for j = i + 1 to n - 1",
-          "    if arr[j] < arr[minIdx] then minIdx = j",
-          "  if minIdx != i then",
-          "    swap(arr[i], arr[minIdx])"
+      "for i = 0 to n - 1",
+      "  minIdx = i",
+      "  for j = i + 1 to n - 1",
+      "    if arr[j] < arr[minIdx] then minIdx = j",
+      "  if minIdx != i then",
+      "    swap(arr[i], arr[minIdx])"
     ],
     generator: selectionSort,
   },
+
   insertion: {
     id: "insertion",
     name: "Insertion Sort",
@@ -93,16 +95,17 @@ export const algorithmRegistry = {
     allowsNegatives: true,
     note: null,
     pseudocode: [
-          "for i = 1 to n - 1",
-          "  key = arr[i]",
-          "  j = i - 1",
-          "  while j >= 0 and arr[j] > key",
-          "    arr[j + 1] = arr[j]",
-          "    j = j - 1",
-          "  arr[j + 1] = key"
+      "for i = 1 to n - 1",
+      "  key = arr[i]",
+      "  j = i - 1",
+      "  while j >= 0 and arr[j] > key",
+      "    arr[j + 1] = arr[j]",
+      "    j = j - 1",
+      "  arr[j + 1] = key"
     ],
     generator: insertionSort,
   },
+
   merge: {
     id: "merge",
     name: "Merge Sort",
@@ -118,15 +121,16 @@ export const algorithmRegistry = {
     allowsNegatives: true,
     note: null,
     pseudocode: [
-          "function mergeSort(arr, left, right):",
-          "  if left >= right then return",
-          "  mid = (left + right) / 2",
-          "  mergeSort(arr, left, mid)",
-          "  mergeSort(arr, mid + 1, right)",
-          "  merge(arr, left, mid, right)"
+      "function mergeSort(arr, left, right):",
+      "  if left >= right then return",
+      "  mid = (left + right) / 2",
+      "  mergeSort(arr, left, mid)",
+      "  mergeSort(arr, mid + 1, right)",
+      "  merge(arr, left, mid, right)"
     ],
     generator: mergeSort,
   },
+
   quick: {
     id: "quick",
     name: "Quick Sort",
@@ -142,15 +146,16 @@ export const algorithmRegistry = {
     allowsNegatives: true,
     note: null,
     pseudocode: [
-          "function quickSort(arr, low, high):",
-          "  if low < high then",
-          "    pivotIdx = partition(arr, low, high)",
-          "    quickSort(arr, low, pivotIdx - 1)",
-          "    quickSort(arr, pivotIdx + 1, high)",
-          "partition: select pivot, swap elements < pivot to left"
+      "function quickSort(arr, low, high):",
+      "  if low < high then",
+      "    pivotIdx = partition(arr, low, high)",
+      "    quickSort(arr, low, pivotIdx - 1)",
+      "    quickSort(arr, pivotIdx + 1, high)",
+      "partition: select pivot, swap elements < pivot to left"
     ],
     generator: quickSort,
   },
+
   heap: {
     id: "heap",
     name: "Heap Sort",
@@ -166,13 +171,14 @@ export const algorithmRegistry = {
     allowsNegatives: true,
     note: null,
     pseudocode: [
-          "buildMaxHeap(arr)",
-          "for i = n - 1 down to 1",
-          "  swap(arr[0], arr[i])",
-          "  heapify(arr, 0, i)"
+      "buildMaxHeap(arr)",
+      "for i = n - 1 down to 1",
+      "  swap(arr[0], arr[i])",
+      "  heapify(arr, 0, i)"
     ],
     generator: heapSort,
   },
+
   shell: {
     id: "shell",
     name: "Shell Sort",
@@ -188,17 +194,18 @@ export const algorithmRegistry = {
     allowsNegatives: true,
     note: null,
     pseudocode: [
-          "gap = n / 2",
-          "while gap > 0",
-          "  for i = gap to n - 1",
-          "    temp = arr[i], j = i",
-          "    while j >= gap and arr[j - gap] > temp",
-          "      arr[j] = arr[j - gap], j -= gap",
-          "    arr[j] = temp",
-          "  gap = gap / 2"
+      "gap = n / 2",
+      "while gap > 0",
+      "  for i = gap to n - 1",
+      "    temp = arr[i], j = i",
+      "    while j >= gap and arr[j - gap] > temp",
+      "      arr[j] = arr[j - gap], j -= gap",
+      "    arr[j] = temp",
+      "  gap = gap / 2"
     ],
     generator: shellSort,
   },
+
   comb: {
     id: "comb",
     name: "Comb Sort",
@@ -214,16 +221,17 @@ export const algorithmRegistry = {
     allowsNegatives: true,
     note: null,
     pseudocode: [
-          "gap = n, shrink = 1.3, swapped = true",
-          "while gap > 1 or swapped",
-          "  gap = floor(gap / shrink)",
-          "  if gap < 1 then gap = 1",
-          "  swapped = false",
-          "  for i = 0 to n - gap - 1",
-          "    if arr[i] > arr[i + gap] swap & swapped = true"
+      "gap = n, shrink = 1.3, swapped = true",
+      "while gap > 1 or swapped",
+      "  gap = floor(gap / shrink)",
+      "  if gap < 1 then gap = 1",
+      "  swapped = false",
+      "  for i = 0 to n - gap - 1",
+      "    if arr[i] > arr[i + gap] swap & swapped = true"
     ],
     generator: combSort,
   },
+
   cocktail: {
     id: "cocktail",
     name: "Cocktail Shaker Sort",
@@ -239,17 +247,18 @@ export const algorithmRegistry = {
     allowsNegatives: true,
     note: null,
     pseudocode: [
-          "swapped = true, start = 0, end = n - 1",
-          "while swapped",
-          "  swapped = false",
-          "  for i = start to end - 1: compare & swap left to right",
-          "  if not swapped break",
-          "  end--",
-          "  for i = end - 1 down to start: compare & swap right to left",
-          "  start++"
+      "swapped = true, start = 0, end = n - 1",
+      "while swapped",
+      "  swapped = false",
+      "  for i = start to end - 1: compare & swap left to right",
+      "  if not swapped break",
+      "  end--",
+      "  for i = end - 1 down to start: compare & swap right to left",
+      "  start++"
     ],
     generator: cocktailSort,
   },
+
   gnome: {
     id: "gnome",
     name: "Gnome Sort",
@@ -265,16 +274,17 @@ export const algorithmRegistry = {
     allowsNegatives: true,
     note: null,
     pseudocode: [
-          "pos = 0",
-          "while pos < n",
-          "  if pos == 0 or arr[pos] >= arr[pos - 1]",
-          "    pos++",
-          "  else",
-          "    swap(arr[pos], arr[pos - 1])",
-          "    pos--"
+      "pos = 0",
+      "while pos < n",
+      "  if pos == 0 or arr[pos] >= arr[pos - 1]",
+      "    pos++",
+      "  else",
+      "    swap(arr[pos], arr[pos - 1])",
+      "    pos--"
     ],
     generator: gnomeSort,
   },
+
   cycle: {
     id: "cycle",
     name: "Cycle Sort",
@@ -290,15 +300,16 @@ export const algorithmRegistry = {
     allowsNegatives: true,
     note: null,
     pseudocode: [
-          "for cycleStart = 0 to n - 2",
-          "  item = arr[cycleStart], pos = cycleStart",
-          "  count smaller elements after cycleStart to find pos",
-          "  if pos == cycleStart continue",
-          "  put item to correct pos (swap)",
-          "  rotate remaining elements in cycle until back at start"
+      "for cycleStart = 0 to n - 2",
+      "  item = arr[cycleStart], pos = cycleStart",
+      "  count smaller elements after cycleStart to find pos",
+      "  if pos == cycleStart continue",
+      "  put item to correct pos (swap)",
+      "  rotate remaining elements in cycle until back at start"
     ],
     generator: cycleSort,
   },
+
   bitonic: {
     id: "bitonic",
     name: "Bitonic Sort",
@@ -314,15 +325,16 @@ export const algorithmRegistry = {
     allowsNegatives: true,
     note: "Works best when n is a power of 2.",
     pseudocode: [
-          "function bitonicSort(low, count, dir):",
-          "  if count > 1",
-          "    k = count / 2",
-          "    bitonicSort(low, k, ASCENDING)",
-          "    bitonicSort(low + k, k, DESCENDING)",
-          "    bitonicMerge(low, count, dir)"
+      "function bitonicSort(low, count, dir):",
+      "  if count > 1",
+      "    k = count / 2",
+      "    bitonicSort(low, k, ASCENDING)",
+      "    bitonicSort(low + k, k, DESCENDING)",
+      "    bitonicMerge(low, count, dir)"
     ],
     generator: bitonicSort,
   },
+
   pancake: {
     id: "pancake",
     name: "Pancake Sort",
@@ -338,14 +350,15 @@ export const algorithmRegistry = {
     allowsNegatives: true,
     note: null,
     pseudocode: [
-          "for currSize = n down to 2",
-          "  maxIdx = findMax(arr, currSize)",
-          "  if maxIdx != currSize - 1",
-          "    flip(arr, maxIdx)   // bring max to top",
-          "    flip(arr, currSize - 1) // flip to target pos"
+      "for currSize = n down to 2",
+      "  maxIdx = findMax(arr, currSize)",
+      "  if maxIdx != currSize - 1",
+      "    flip(arr, maxIdx)",
+      "    flip(arr, currSize - 1)"
     ],
     generator: pancakeSort,
   },
+
   bogo: {
     id: "bogo",
     name: "Bogo Sort",
@@ -361,12 +374,13 @@ export const algorithmRegistry = {
     allowsNegatives: true,
     note: "Hard-capped for safety — unbounded expected runtime.",
     pseudocode: [
-          "while not isSorted(arr)",
-          "  shuffle(arr) // Randomly permute",
-          "check if arr is sorted"
+      "while not isSorted(arr)",
+      "  shuffle(arr)",
+      "check if arr is sorted"
     ],
     generator: bogoSort,
   },
+
   stooge: {
     id: "stooge",
     name: "Stooge Sort",
@@ -382,16 +396,17 @@ export const algorithmRegistry = {
     allowsNegatives: true,
     note: null,
     pseudocode: [
-          "function stoogeSort(arr, l, h):",
-          "  if arr[l] > arr[h] swap(arr[l], arr[h])",
-          "  if h - l + 1 > 2",
-          "    t = (h - l + 1) / 3",
-          "    stoogeSort(arr, l, h - t)",
-          "    stoogeSort(arr, l + t, h)",
-          "    stoogeSort(arr, l, h - t)"
+      "function stoogeSort(arr, l, h):",
+      "  if arr[l] > arr[h] swap(arr[l], arr[h])",
+      "  if h - l + 1 > 2",
+      "    t = (h - l + 1) / 3",
+      "    stoogeSort(arr, l, h - t)",
+      "    stoogeSort(arr, l + t, h)",
+      "    stoogeSort(arr, l, h - t)"
     ],
     generator: stoogeSort,
   },
+
   tim: {
     id: "tim",
     name: "Tim Sort",
@@ -407,15 +422,16 @@ export const algorithmRegistry = {
     allowsNegatives: true,
     note: null,
     pseudocode: [
-          "RUN = 8 or 16",
-          "for i = 0 to n step RUN: insertionSort(arr, i, min(i+RUN-1, n-1))",
-          "size = RUN",
-          "while size < n",
-          "  for left = 0 to n step 2*size: merge(arr, left, left+size-1, right)",
-          "  size = size * 2"
+      "RUN = 8 or 16",
+      "for i = 0 to n step RUN: insertionSort(arr, i, min(i+RUN-1, n-1))",
+      "size = RUN",
+      "while size < n",
+      "  for left = 0 to n step 2*size: merge(arr, left, left+size-1, right)",
+      "  size = size * 2"
     ],
     generator: timSort,
   },
+
   oddEven: {
     id: "oddEven",
     name: "Odd-Even Sort (Brick)",
@@ -431,14 +447,15 @@ export const algorithmRegistry = {
     allowsNegatives: true,
     note: null,
     pseudocode: [
-          "sorted = false",
-          "while not sorted:",
-          "  sorted = true",
-          "  for i = 1 to n-2 step 2: compare & swap (odd phase)",
-          "  for i = 0 to n-2 step 2: compare & swap (even phase)"
+      "sorted = false",
+      "while not sorted:",
+      "  sorted = true",
+      "  for i = 1 to n-2 step 2: compare & swap (odd phase)",
+      "  for i = 0 to n-2 step 2: compare & swap (even phase)"
     ],
     generator: oddEvenSort,
   },
+
   tree: {
     id: "tree",
     name: "Tree Sort (BST)",
@@ -454,13 +471,14 @@ export const algorithmRegistry = {
     allowsNegatives: true,
     note: null,
     pseudocode: [
-          "root = null",
-          "for each val in arr: insertIntoBST(root, val)",
-          "idx = 0",
-          "inorderTraversal(root, (val) => arr[idx++] = val)"
+      "root = null",
+      "for each val in arr: insertIntoBST(root, val)",
+      "idx = 0",
+      "inorderTraversal(root, (val) => arr[idx++] = val)"
     ],
     generator: treeSort,
   },
+
   library: {
     id: "library",
     name: "Library Sort",
@@ -476,13 +494,14 @@ export const algorithmRegistry = {
     allowsNegatives: true,
     note: null,
     pseudocode: [
-          "Initialize target array with gaps between elements",
-          "Binary search to find position for next element",
-          "If gap available, insert directly without shifting",
-          "Rebalance gaps when target array fills up"
+      "Initialize target array with gaps between elements",
+      "Binary search to find position for next element",
+      "If gap available, insert directly without shifting",
+      "Rebalance gaps when target array fills up"
     ],
     generator: librarySort,
   },
+
   counting: {
     id: "counting",
     name: "Counting Sort",
@@ -498,13 +517,14 @@ export const algorithmRegistry = {
     allowsNegatives: false,
     note: "Non-negative integers recommended.",
     pseudocode: [
-          "find min and max values",
-          "create count array of size (max - min + 1)",
-          "for val in arr: count[val - min]++",
-          "reconstruct arr using frequency counts"
+      "find min and max values",
+      "create count array of size (max - min + 1)",
+      "for val in arr: count[val - min]++",
+      "reconstruct arr using frequency counts"
     ],
     generator: countingSort,
   },
+
   radix: {
     id: "radix",
     name: "Radix Sort (LSD)",
@@ -520,15 +540,16 @@ export const algorithmRegistry = {
     allowsNegatives: false,
     note: "Non-negative integers recommended.",
     pseudocode: [
-          "maxVal = max(arr)",
-          "exp = 1 (1s, 10s, 100s place...)",
-          "while maxVal / exp > 0",
-          "  distribute elements into 10 buckets by (arr[i] / exp) % 10",
-          "  collect elements back into main array",
-          "  exp *= 10"
+      "maxVal = max(arr)",
+      "exp = 1 (1s, 10s, 100s place...)",
+      "while maxVal / exp > 0",
+      "  distribute elements into 10 buckets by (arr[i] / exp) % 10",
+      "  collect elements back into main array",
+      "  exp *= 10"
     ],
     generator: radixSort,
   },
+
   bucket: {
     id: "bucket",
     name: "Bucket Sort",
@@ -544,13 +565,14 @@ export const algorithmRegistry = {
     allowsNegatives: false,
     note: null,
     pseudocode: [
-          "create k buckets spanning range [min, max]",
-          "distribute arr[i] into corresponding bucket",
-          "sort each bucket using insertion sort",
-          "concatenate buckets back into arr"
+      "create k buckets spanning range [min, max]",
+      "distribute arr[i] into corresponding bucket",
+      "sort each bucket using insertion sort",
+      "concatenate buckets back into arr"
     ],
     generator: bucketSort,
   },
+
   pigeonhole: {
     id: "pigeonhole",
     name: "Pigeonhole Sort",
@@ -566,13 +588,14 @@ export const algorithmRegistry = {
     allowsNegatives: true,
     note: "Range should be close to n for efficiency.",
     pseudocode: [
-          "min = min(arr), max = max(arr), range = max - min + 1",
-          "pigeonholes = array of empty lists size range",
-          "for val in arr: pigeonholes[val - min].append(val)",
-          "copy elements back to arr sequentially"
+      "min = min(arr), max = max(arr), range = max - min + 1",
+      "pigeonholes = array of empty lists size range",
+      "for val in arr: pigeonholes[val - min].append(val)",
+      "copy elements back to arr sequentially"
     ],
     generator: pigeonholeSort,
   },
+
   flash: {
     id: "flash",
     name: "Flash Sort",
@@ -588,12 +611,13 @@ export const algorithmRegistry = {
     allowsNegatives: true,
     note: null,
     pseudocode: [
-          "class count L[m] computed using formula (m-1)*(arr[i]-min)/(max-min)",
-          "permute elements into their class locations in-place",
-          "run insertion sort on final resulting layout"
+      "class count L[m] computed using formula (m-1)*(arr[i]-min)/(max-min)",
+      "permute elements into their class locations in-place",
+      "run insertion sort on final resulting layout"
     ],
     generator: flashSort,
   },
+
   strand: {
     id: "strand",
     name: "Strand Sort",
@@ -609,12 +633,12 @@ export const algorithmRegistry = {
     allowsNegatives: true,
     note: null,
     pseudocode: [
-          "while unsorted list is not empty:",
-          "  pull increasing strand from unsorted list",
-          "  merge strand into sorted main list"
+      "while unsorted list is not empty:",
+      "  pull increasing strand from unsorted list",
+      "  merge strand into sorted main list"
     ],
     generator: strandSort,
-  }
+  },
 };
 
 export const ALGORITHM_KEYS = Object.keys(algorithmRegistry);
@@ -643,22 +667,30 @@ export const ALGORITHM_METADATA = Object.fromEntries(
 /**
  * Run correctness self-test across all registered algorithms.
  */
-export function runSelfTests(sample = [42, 12, 88, 3, 99, 25, 1, 56, 17, 34]) {
+export function runSelfTests(
+  sample = [42, 12, 88, 3, 99, 25, 1, 56, 17, 34]
+) {
   const expected = [...sample].sort((a, b) => a - b);
   const results = [];
 
   for (const key of ALGORITHM_KEYS) {
     const entry = algorithmRegistry[key];
+
     try {
-      const gen = entry.generator(sample);
+      const gen = entry.generator([...sample]);
+
       let lastEvent = null;
       let stepCount = 0;
+
       for (const event of gen) {
         lastEvent = event;
         stepCount += 1;
       }
+
       const finalArray = lastEvent ? lastEvent.array : [];
-      const isCorrect = JSON.stringify(finalArray) === JSON.stringify(expected);
+      const isCorrect =
+        JSON.stringify(finalArray) === JSON.stringify(expected);
+
       results.push({
         key,
         name: entry.name,
@@ -677,6 +709,14 @@ export function runSelfTests(sample = [42, 12, 88, 3, 99, 25, 1, 56, 17, 34]) {
   }
 
   const passedCount = results.filter((r) => r.passed).length;
-  console.log(`[Self-Test Suite] Passed ${passedCount} / ${ALGORITHM_KEYS.length} Algorithms.`);
-  return { total: ALGORITHM_KEYS.length, passed: passedCount, details: results };
+
+  console.log(
+    `[Self-Test Suite] Passed ${passedCount} / ${ALGORITHM_KEYS.length} Algorithms.`
+  );
+
+  return {
+    total: ALGORITHM_KEYS.length,
+    passed: passedCount,
+    details: results,
+  };
 }
