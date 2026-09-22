@@ -2,12 +2,17 @@
 
 ## Recovery
 
--   [ ] Inspect filesystem
--   [ ] Inspect Git status/history
--   [ ] Identify uncommitted/partial work
--   [ ] Verify current application
--   [ ] Verify 25/25
--   [ ] Verify console
+-   [x] Inspect filesystem
+-   [x] Inspect Git status/history
+-   [x] Identify uncommitted/partial work
+-   [x] Verify current application
+-   [x] Verify 25/25
+-   [x] Verify console
+
+Recovery notes (2026-09-22): Live app is still `app.js` +
+`algorithms.js` + `styles.css`. V2 `src/` tree is scaffold/stubs only.
+Self-test 25/25 verified in Node and browser. Working tree clean; local
+`main` is 1 commit ahead of `origin/main` (`5ad77b0`).
 
 ## Architecture
 

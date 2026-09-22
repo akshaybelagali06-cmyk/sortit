@@ -50,7 +50,8 @@ deployment.
 
 ## Current milestone
 
-`RECOVERY / STATE VERIFICATION`
+`RECOVERY / STATE VERIFICATION` — verified complete (see
+`docs/06_AGENT_MEMORY.md`). Next: `ARCHITECTURE` (await approval).
 
 ## Required handoff
 

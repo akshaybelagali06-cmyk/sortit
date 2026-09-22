@@ -3,108 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SortIt - Interactive 25 Sorting Algorithms Visualizer</title>
-  <meta name="description" content="An interactive web application to visualize and understand 25 sorting algorithms with real-time audio synthesis, step controls, and pseudocode execution.">
+  <title>SortIt — Algorithm Observatory</title>
+  <meta name="description" content="Interactive Algorithm Observatory: visualize 25 sorting algorithms with step-by-step explanations, timelines, and metrics.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/responsive.css">
 </head>
 <body>
 
-  <!-- App Header -->
   <header class="header">
     <div class="logo-group">
-      <span class="logo-icon">⚡</span>
-      <h1 class="logo-title">SortIt</h1>
+      <span class="logo-icon" aria-hidden="true">◈</span>
+      <div class="logo-text">
+        <h1 class="logo-title">SortIt</h1>
+        <p class="logo-subtitle">Algorithm Observatory</p>
+      </div>
       <span class="badge-25">25 Algorithms</span>
     </div>
-    
-    <div class="self-test-status" id="selfTestBadge">
-      <span class="status-dot"></span>
+
+    <div class="self-test-status" id="selfTestBadge" role="status" aria-live="polite">
+      <span class="status-dot" aria-hidden="true"></span>
       <span id="selfTestText">Self-Test: Running...</span>
     </div>
   </header>
 
-  <!-- Main Workstation Layout -->
   <main class="main-container">
-    
-    <!-- LEFT PANEL: Controls & Settings -->
-    <aside class="card">
+
+    <aside class="card" aria-label="Controls and input">
       <div class="card-title">
-        <span>Controls & Input</span>
-        <span>⚙️</span>
+        <span>Controls &amp; Input</span>
+        <span aria-hidden="true">⚙</span>
       </div>
 
-      <!-- Algorithm Select -->
       <div class="control-group">
         <label class="control-label" for="algoSelect">Sorting Algorithm</label>
-        <select id="algoSelect" class="select-input">
-          <optgroup label="Simple O(N²)">
-            <option value="bubble" selected>Bubble Sort</option>
-            <option value="selection">Selection Sort</option>
-            <option value="insertion">Insertion Sort</option>
-            <option value="cocktail">Cocktail Shaker Sort</option>
-            <option value="gnome">Gnome Sort</option>
-            <option value="oddEven">Odd-Even (Brick) Sort</option>
-          </optgroup>
-          <optgroup label="Efficient O(N log N)">
-            <option value="quick">Quick Sort</option>
-            <option value="merge">Merge Sort</option>
-            <option value="heap">Heap Sort</option>
-            <option value="shell">Shell Sort</option>
-            <option value="comb">Comb Sort</option>
-            <option value="tim">Tim Sort</option>
-            <option value="tree">Tree Sort (BST)</option>
-            <option value="bitonic">Bitonic Sort</option>
-            <option value="library">Library Sort</option>
-          </optgroup>
-          <optgroup label="Non-Comparison / Distribution">
-            <option value="counting">Counting Sort</option>
-            <option value="radix">Radix Sort (LSD)</option>
-            <option value="bucket">Bucket Sort</option>
-            <option value="pigeonhole">Pigeonhole Sort</option>
-            <option value="flash">Flash Sort</option>
-            <option value="strand">Strand Sort</option>
-          </optgroup>
-          <optgroup label="Exotic & Special">
-            <option value="cycle">Cycle Sort</option>
-            <option value="pancake">Pancake Sort</option>
-            <option value="stooge">Stooge Sort</option>
-            <option value="bogo">Bogo Sort</option>
-          </optgroup>
-        </select>
+        <select id="algoSelect" class="select-input"></select>
       </div>
 
-      <!-- Custom Input / Generator -->
       <div class="control-group">
         <label class="control-label" for="arrayInput">Custom Array (comma separated)</label>
-        <input type="text" id="arrayInput" class="text-input" placeholder="e.g. 45, 12, 89, 23, 7, 65">
+        <input type="text" id="arrayInput" class="text-input" placeholder="e.g. 45, 12, 89, 23, 7, 65" autocomplete="off">
+        <p id="inputMessage" class="input-message" role="status" aria-live="polite"></p>
       </div>
 
-      <!-- Preset Generator -->
       <div class="control-group">
         <label class="control-label" for="presetSelect">Array Pattern</label>
-        <select id="presetSelect" class="select-input">
-          <option value="random">Random Shuffled</option>
-          <option value="nearlySorted">Nearly Sorted</option>
-          <option value="reversed">Reversed Order</option>
-          <option value="fewUnique">Few Unique Values</option>
-        </select>
+        <select id="presetSelect" class="select-input"></select>
       </div>
 
-      <button id="btnGenerate" class="btn">🎲 Generate New Array</button>
+      <button id="btnGenerate" class="btn" type="button">Generate New Array</button>
 
-      <!-- Array Size Slider -->
       <div class="control-group">
         <div class="control-label">
           <span>Array Size</span>
           <span id="sizeVal">30</span>
         </div>
-        <input type="range" id="sizeSlider" class="range-slider" min="10" max="80" value="30">
+        <input type="range" id="sizeSlider" class="range-slider" min="3" max="80" value="30">
       </div>
 
-      <!-- Speed Slider -->
       <div class="control-group">
         <div class="control-label">
           <span>Animation Speed</span>
@@ -113,7 +72,6 @@
         <input type="range" id="speedSlider" class="range-slider" min="1" max="250" value="50" dir="rtl">
       </div>
 
-      <!-- Sound Settings -->
       <div class="control-group">
         <div class="control-label">
           <span>Audio Synthesizer</span>
@@ -121,45 +79,49 @@
             <input type="checkbox" id="soundToggle" checked> Enable
           </label>
         </div>
-        <input type="range" id="volumeSlider" class="range-slider" min="0" max="1" step="0.05" value="0.2">
-      </div>
-
-      <!-- Playback Actions -->
-      <div class="btn-group-row">
-        <button id="btnPlay" class="btn btn-primary">▶ Visualize</button>
-        <button id="btnPause" class="btn" disabled>⏸ Pause</button>
+        <input type="range" id="volumeSlider" class="range-slider" min="0" max="1" step="0.05" value="0.2" aria-label="Volume">
       </div>
 
       <div class="btn-group-row">
-        <button id="btnStepBack" class="btn" disabled>⏮ Step Back</button>
-        <button id="btnStepForward" class="btn" disabled>⏭ Step Forward</button>
+        <button id="btnPlay" class="btn btn-primary" type="button">Visualize</button>
+        <button id="btnPause" class="btn" type="button" disabled>Pause</button>
       </div>
 
-      <button id="btnReset" class="btn btn-danger">🔄 Reset Array</button>
+      <div class="btn-group-row">
+        <button id="btnStepBack" class="btn" type="button" disabled>Step Back</button>
+        <button id="btnStepForward" class="btn" type="button" disabled>Step Forward</button>
+      </div>
+
+      <button id="btnReset" class="btn btn-danger" type="button">Reset Array</button>
     </aside>
 
-    <!-- CENTER PANEL: Visualization Canvas & Live Metrics -->
-    <section class="visualization-area">
-      
-      <!-- Live Narration Status Banner -->
+    <section class="visualization-area" aria-label="Visualization">
+
       <div class="narration-panel">
-        <span class="narration-icon">💬</span>
-        <span id="narrationText">Select an algorithm and click "Visualize" to start step-by-step narration.</span>
+        <span class="narration-icon" aria-hidden="true">◉</span>
+        <span id="narrationText">Select an algorithm and click Visualize to begin.</span>
       </div>
 
-      <!-- Main Array Flex Bars Canvas -->
-      <div id="arrayContainer" class="array-container" aria-label="Sorting Visualization Canvas"></div>
+      <div id="arrayContainer" class="array-container" aria-label="Sorting visualization canvas"></div>
 
-      <!-- Dynamic Auxiliary Bins Area (Shown for Counting, Radix, Bucket, etc.) -->
       <div id="auxContainer" class="aux-container" style="display: none;">
         <div class="aux-header">
-          <span>📦 Auxiliary Space & Bins</span>
+          <span>Auxiliary Space &amp; Bins</span>
           <span id="auxLabel">Buckets</span>
         </div>
         <div id="auxItemsGrid" class="aux-items-grid"></div>
       </div>
 
-      <!-- Real-Time Metrics Dashboard -->
+      <div class="timeline-panel" aria-label="Step timeline">
+        <div class="timeline-meta">
+          <span id="timelineText">Step 0 / 0</span>
+          <span class="timeline-hint">History time travel via Step Back / Forward</span>
+        </div>
+        <div class="timeline-track" role="progressbar" aria-valuemin="0" aria-valuenow="0" aria-valuemax="0">
+          <div id="timelineFill" class="timeline-fill"></div>
+        </div>
+      </div>
+
       <div class="metrics-grid">
         <div class="metric-box">
           <div id="metricComparisons" class="metric-val">0</div>
@@ -181,18 +143,22 @@
 
     </section>
 
-    <!-- RIGHT PANEL: Pseudocode & Complexity Info -->
-    <aside class="card">
+    <aside class="card learning-panel" aria-label="Learning panel">
       <div class="card-title">
         <span id="infoAlgoTitle">Bubble Sort</span>
         <span id="infoCategoryBadge" class="badge">Simple O(N²)</span>
       </div>
 
-      <p id="infoDescription" style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+      <p id="infoDescription" class="info-description">
         Repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order.
       </p>
 
-      <!-- Time & Space Complexity Badges -->
+      <div class="meta-flags">
+        <span id="infoStable" class="flag-badge">Stable</span>
+        <span id="infoInPlace" class="flag-badge">In-place</span>
+      </div>
+      <p id="infoNote" class="info-note" style="display: none;"></p>
+
       <div class="complexity-badges">
         <div class="badge">Best: <span id="compBest">O(N)</span></div>
         <div class="badge">Avg: <span id="compAvg">O(N²)</span></div>
@@ -200,29 +166,34 @@
         <div class="badge">Space: <span id="compSpace">O(1)</span></div>
       </div>
 
-      <!-- Pseudocode Viewer -->
+      <div class="explain-box">
+        <div class="control-label">Current Operation</div>
+        <div id="operationType" class="operation-type">Idle</div>
+        <div class="control-label why-label">Why?</div>
+        <p id="whyText" class="why-text">Generate an array and step through to see why each operation happens.</p>
+        <div id="explanationLive" class="sr-only" aria-live="polite"></div>
+      </div>
+
       <div class="control-group">
         <div class="control-label">Live Pseudocode Execution</div>
         <div id="pseudocodeContainer" class="pseudocode-container"></div>
       </div>
 
-      <!-- Keyboard Controls Legend -->
-      <div style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.6; border-top: 1px solid var(--panel-border); padding-top: 0.75rem;">
-        <strong>⌨️ Keyboard Shortcuts:</strong><br>
-        <kbd style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 3px;">Space</kbd> Play / Pause &nbsp;|&nbsp;
-        <kbd style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 3px;">←</kbd> Step Back &nbsp;|&nbsp;
-        <kbd style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 3px;">→</kbd> Step Forward &nbsp;|&nbsp;
-        <kbd style="background: rgba(255,255,255,0.1); padding: 2px 5px; border-radius: 3px;">R</kbd> Reset
+      <div class="keyboard-legend">
+        <strong>Keyboard:</strong>
+        <kbd>Space</kbd> Play/Pause ·
+        <kbd>←</kbd> Back ·
+        <kbd>→</kbd> Forward ·
+        <kbd>R</kbd> Reset
       </div>
     </aside>
 
   </main>
 
   <footer class="footer">
-    SortIt Algorithm Visualizer &copy; 2026 &bull; Decoupled Generator Engine &bull; Web Audio API Synthesizer
+    SortIt Algorithm Observatory · Decoupled generator engine · StepPlayer history · 25 algorithms
   </footer>
 
-  <!-- App Script Module -->
-  <script type="module" src="app.js"></script>
+  <script type="module" src="src/main.js"></script>
 </body>
 </html>
