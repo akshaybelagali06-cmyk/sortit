@@ -7,14 +7,16 @@
   <meta name="description" content="Interactive Algorithm Observatory: visualize 25 sorting algorithms with step-by-step explanations, timelines, and metrics.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Added Inter font for the modern dashboard aesthetic while preserving Fira Code for pseudocode -->
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/main.css">
   <link rel="stylesheet" href="styles/components.css">
   <link rel="stylesheet" href="styles/responsive.css">
 </head>
 <body>
 
-  <header class="header">
+  <!-- Added glass-panel utility class for consistent translucent styling -->
+  <header class="header glass-panel">
     <div class="logo-group">
       <span class="logo-icon" aria-hidden="true">◈</span>
       <div class="logo-text">
@@ -32,7 +34,8 @@
 
   <main class="main-container">
 
-    <aside class="card" aria-label="Controls and input">
+    <!-- Added glass-panel utility class -->
+    <aside class="card glass-panel" aria-label="Controls and input">
       <div class="card-title">
         <span>Controls &amp; Input</span>
         <span aria-hidden="true">⚙</span>
@@ -95,7 +98,8 @@
       <button id="btnReset" class="btn btn-danger" type="button">Reset Array</button>
     </aside>
 
-    <section class="visualization-area" aria-label="Visualization">
+    <!-- Added glass-panel utility class -->
+    <section class="visualization-area glass-panel" aria-label="Visualization">
 
       <div class="narration-panel">
         <span class="narration-icon" aria-hidden="true">◉</span>
@@ -143,7 +147,8 @@
 
     </section>
 
-    <aside class="card learning-panel" aria-label="Learning panel">
+    <!-- Added glass-panel utility class -->
+    <aside class="card learning-panel glass-panel" aria-label="Learning panel">
       <div class="card-title">
         <span id="infoAlgoTitle">Bubble Sort</span>
         <span id="infoCategoryBadge" class="badge">Simple O(N²)</span>
@@ -194,9 +199,10 @@
        COMPARISON LAB
   ========================================================= -->
 
+  <!-- Added glass-panel utility class -->
   <section
     id="comparison-lab-container"
-    class="comparison-lab-section"
+    class="comparison-lab-section glass-panel"
     aria-labelledby="comparison-lab-title"
   >
 
@@ -220,9 +226,7 @@
 
     </div>
 
-
     <!-- Algorithm Selection -->
-
     <div
       id="comparison-algorithm-selection"
       class="comparison-algorithm-selection"
@@ -230,9 +234,7 @@
       <!-- JavaScript will generate algorithm checkboxes here -->
     </div>
 
-
     <!-- Comparison Controls -->
-
     <div class="comparison-controls">
 
       <button
@@ -258,7 +260,6 @@
 
     </div>
 
-
     <div class="comparison-summary" id="comparison-summary" aria-live="polite">
       <div class="comparison-summary-item">
         <span class="comparison-summary-label">Same input array</span>
@@ -279,7 +280,6 @@
     </div>
 
     <!-- Status -->
-
     <div
       id="comparison-status"
       class="comparison-status"
@@ -288,9 +288,7 @@
       Select at least two algorithms.
     </div>
 
-
     <!-- Fastest Result -->
-
     <div
       id="comparison-fastest"
       class="comparison-fastest"
@@ -299,20 +297,13 @@
       <!-- JavaScript will display fastest result here -->
     </div>
 
-
     <!-- Results -->
-
-    <div
-      class="comparison-results-container"
-    >
-
+    <div class="comparison-results-container">
       <table
         id="comparison-results"
         class="comparison-results"
       >
-
         <thead>
-
           <tr>
             <th>Algorithm</th>
             <th>Time</th>
@@ -320,11 +311,8 @@
             <th>Status</th>
             <th>Difference</th>
           </tr>
-
         </thead>
-
         <tbody id="comparison-results-body">
-
           <tr>
             <td
               colspan="5"
@@ -333,11 +321,8 @@
               Run a comparison to see results.
             </td>
           </tr>
-
         </tbody>
-
       </table>
-
     </div>
 
   </section>
