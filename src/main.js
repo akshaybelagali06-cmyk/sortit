@@ -60,6 +60,7 @@ class SortingVisualizerApp {
       btnStepBack: document.getElementById('btnStepBack'),
       btnStepForward: document.getElementById('btnStepForward'),
       btnReset: document.getElementById('btnReset'),
+      btnComparisonLab: document.getElementById('btnComparisonLab'),
 
       arrayContainer: document.getElementById('arrayContainer'),
       auxContainer: document.getElementById('auxContainer'),
@@ -145,6 +146,18 @@ class SortingVisualizerApp {
 
     bindKeyboardShortcuts(this.player, {
       onReset: () => this.resetPlayerWithCurrentArray(),
+    });
+
+    this.dom.btnComparisonLab?.addEventListener('click', () => {
+      const container = this.dom.comparisonLabContainer;
+      if (!container) return;
+
+      if (container.hidden) {
+        container.hidden = false;
+        container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        container.hidden = true;
+      }
     });
   }
 

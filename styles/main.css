@@ -268,8 +268,9 @@ body::after {
     transparent 60%,
     rgba(255, 45, 149, 0.25));
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
-          mask-composite: exclude;
+  mask-composite: exclude;
   pointer-events: none;
 }
 
@@ -442,6 +443,10 @@ body::after {
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
+}
+.comparison-lab-btn {
+  width: 100%;
+  grid-column: 1 / -1;
 }
 
 /* ==========================================================================

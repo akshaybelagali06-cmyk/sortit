@@ -38,7 +38,6 @@
     <aside class="card glass-panel" aria-label="Controls and input">
       <div class="card-title">
         <span>Controls &amp; Input</span>
-        <span aria-hidden="true">⚙</span>
       </div>
 
       <div class="control-group">
@@ -86,16 +85,25 @@
       </div>
 
       <div class="btn-group-row">
-        <button id="btnPlay" class="btn btn-primary" type="button">Visualize</button>
-        <button id="btnPause" class="btn" type="button" disabled>Pause</button>
+        <button id="btnPlay" class="btn btn-primary" type="button"><span class="btn-icon">▶</span>Visualize</button>
+        <button id="btnPause" class="btn" type="button" disabled><span class="btn-icon">⏸</span>Pause</button>
       </div>
 
       <div class="btn-group-row">
-        <button id="btnStepBack" class="btn" type="button" disabled>Step Back</button>
-        <button id="btnStepForward" class="btn" type="button" disabled>Step Forward</button>
+        <button id="btnStepBack" class="btn" type="button" disabled><span class="btn-icon">⏮</span>Step Back</button>
+        <button id="btnStepForward" class="btn" type="button" disabled><span class="btn-icon">⏭</span>Step Forward</button>
       </div>
 
       <button id="btnReset" class="btn btn-danger" type="button">Reset Array</button>
+      <div class="btn-group-row">
+        <button
+          id="btnComparisonLab"
+          class="btn"
+          type="button"
+        >
+          ⚔ Comparison Lab
+        </button>
+      </div>
     </aside>
 
     <!-- Added glass-panel utility class -->
@@ -204,6 +212,7 @@
     id="comparison-lab-container"
     class="comparison-lab-section glass-panel"
     aria-labelledby="comparison-lab-title"
+    hidden
   >
 
     <div class="comparison-lab-header">

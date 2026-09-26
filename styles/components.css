@@ -199,6 +199,11 @@
   margin: 2rem 1.75rem;
 }
 
+/* Respect the native [hidden] attribute by overriding the display:flex above */
+.comparison-lab-section[hidden] {
+  display: none;
+}
+
 .comparison-lab-header {
   display: flex;
   justify-content: space-between;
@@ -593,6 +598,18 @@
   border-color: rgba(245, 158, 11, 0.4);
   color: #fde68a;
   box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
+}
+
+/* ==========================================================================
+   Controls Panel — Comparison Lab Button Full Width
+   --------------------------------------------------------------------------
+   The Comparison Lab button lives alone inside a .btn-group-row, which is a
+   two-column grid intended for paired buttons (Play/Pause, Step Back/Forward).
+   Spanning both grid columns makes the single button fill the row, matching
+   the full-width Reset Array button above it, without affecting any other row.
+   ========================================================================== */
+#btnComparisonLab {
+  grid-column: 1 / -1;
 }
 
 @media (prefers-reduced-motion: reduce) {
